@@ -1,7 +1,7 @@
 <?php
 
-	$GOOGLE_API = "AIzaSyBz7-0u1EtetJ_oPZBLpY6fXmaP1rKghe8";
-	$FORECAST_API = "a40ded2b26376cbadd8cbfbd02b462b7";
+	$GOOGLE_API="";
+	$FORECAST_API="";
 
 	if(isset($_POST["search"]) && $_POST["search"]) 
 	{
