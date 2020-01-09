@@ -1,0 +1,96 @@
+<div class="container container-fluid rounded shadow m-search-form">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+    <h1 class="text-center">Weather Search</h1>
+    <div class="form-group row">
+      <label for="street" class="col-sm-2 col-form-label">Street <span
+        class="text-danger align-text-bottom"> *</span></label>
+      <div class="col-sm-10">
+        <input formControlName="street" type="text" class="form-control" name="street" id="street"
+               required placeholder="Enter Street Name">
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10 text-danger"
+           [class.d-none]="userForm.get('street').untouched ||
+                           userForm.get('street').valid ||
+                           userForm.get('currentLocation').value===true">
+        Please enter a street.
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="city" class="col-sm-2 col-form-label">City <span
+        class="text-danger align-text-bottom"> *</span></label>
+      <div class="col-sm-10">
+        <input formControlName="city" type="text" class="form-control" name="city" id="city"
+               required placeholder="Enter City Name" [matAutocomplete]="auto" matAutocompletePosition="below" t>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of cityOptions" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10 text-danger"
+           [class.d-none]="userForm.get('city').untouched ||
+                           userForm.get('city').valid ||
+                           userForm.get('currentLocation').value===true">
+        Please enter a city.
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="state" class="col-sm-2 col-form-label">State <span
+        class="text-danger align-text-bottom"> *</span></label>
+      <div class="col-sm-6">
+        <select formControlName="state" class="form-control custom-select" name="state" id="state">
+          <option value="" disabled selected>Select State</option>
+          <option *ngFor="let state of stateOptions" [value]="state.Abbreviation">{{state.State}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group form-check">
+      <input formControlName="currentLocation" type="checkbox" class="form-check-input" name="currentLocation"
+             id="currentLocation">
+      <label class="form-check-label" for="currentLocation">Current Location</label>
+    </div>
+
+    <div class="form group row d-flex flex-row">
+      <div class="col-md-3 col-sm-3 col-6">
+        <button type="submit" [disabled]="!userForm.valid" class="btn m-white-btn">
+          <i class="material-icons" style="vertical-align: middle">search</i>Search
+        </button>
+      </div>
+      <div class="col-md-3 col-sm-3 col-5">
+        <button type="reset" class="btn m-white-btn" (click)="clear();isFavorite=false">
+          <i class="material-icons" style="vertical-align: middle">clear_all</i>Clear
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="container">
+  <div class="row justify-content-center m-margin-tp-large">
+<!--    <div class="d-flex flex-row">-->
+    <div class="col-md-auto col-sm-auto col-auto">
+      <button type="button" [className]="isFavorite?'btn m-white-btn':'btn m-blue-btn'"
+              (click)="isFavorite=false;showResult()">Results
+      </button>
+    </div>
+    <div class="col-md-auto col-sm-auto col-auto">
+      <button type="button" [className]="isFavorite?'btn m-blue-btn':'btn m-white-btn'"
+              (click)="isFavorite=true;validAddress=true"
+              [routerLink]="['/favorites']">Favorites
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="alert alert-warning" role="alert" [hidden]="validAddress">
+    Invalid Address.
+  </div>
+</div>
+
+<router-outlet></router-outlet>

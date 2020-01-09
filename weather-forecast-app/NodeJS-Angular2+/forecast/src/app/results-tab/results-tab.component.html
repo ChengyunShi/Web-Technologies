@@ -1,0 +1,245 @@
+<div class="container">
+  <div class="progress m-progress-bar" [hidden]="(sealURL!='' && forecast!={}) || !invalidAddress">
+    <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 50%"
+         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="alert alert-warning" role="alert" [hidden]="invalidAddress">
+    Invalid Address.
+  </div>
+</div>
+
+<div class="container m-results-tab" [hidden]="sealURL=='' || forecast=={}">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-current-tab" style="color:black" data-toggle="tab" href="#nav-current"
+         role="tab" aria-controls="nav-home" aria-selected="true">Current</a>
+      <a class="nav-item nav-link" id="nav-hourly-tab" style="color:black" data-toggle="tab" href="#nav-hourly"
+         role="tab" aria-controls="nav-profile" aria-selected="false" (click)="setBarChart()">Hourly</a>
+      <a class="nav-item nav-link" id="nav-weekly-tab" style="color:black" data-toggle="tab" href="#nav-weekly"
+         role="tab" aria-controls="nav-contact" aria-selected="false" (click)="setRangeBar()">Weekly</a>
+      <div class="ml-auto">
+        <div class="d-flex flex-row">
+          <a class="nav-item" id="nav-twitter-tab" target="_blank" style="margin-right:10px"
+             href="https://twitter.com/intent/tweet?text=The current temperature at {{this.forecast.city}} is {{this.forecast.temperature}}°F. The weather conditions are {{forecast.summary}}.&hashtags=CSCI571WeatherSearch">
+            <img class="m-img-icon" src="https://csci571.com/hw/hw8/Images/Twitter.png">
+          </a>
+          <button class="nav-item btn border rounded m-favorite-icon" id="nav-favorites-tab"
+                  (click)="favorite()">
+            <i class="material-icons align-middle" [hidden]="isFavorite">star_border</i>
+            <i class="material-icons" style="color: #FFD531;" [hidden]="!isFavorite">star</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="card m-weather-card border border-secondary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h2 class="card-title">{{city}}</h2>
+              <h2 class="card-subtitle mb-2 text-muted">{{forecast.timezone}}</h2>
+              <p class="card-text">
+                <span class="m-temperature">{{forecast.temperature | number:'1.0-0'}}</span>
+                <img class="round align-bottom m-img-degree"
+                     src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png">
+                <span class="m-temperature">F</span>
+              </p>
+              <p class="card-text m-summary">{{forecast.summary}}</p>
+            </div>
+            <div class="col">
+              <img class="rounded-circle m-img-seal" src="{{sealURL}}">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col" *ngIf="forecast.humidity!==0 && forecast.humidity!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-512.png" alt="Humidity"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Humidity">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.humidity}}</span>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="forecast.pressure!==0 && forecast.pressure!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-512.png" alt="Pressure"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Pressure">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.pressure}}</span>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="forecast.windSpeed!==0 && forecast.windSpeed!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-512.png" alt="Wind Speed"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Wind Speed">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.windSpeed}}</span>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="forecast.visibility!==0 && forecast.visibility!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-512.png" alt="Visibility"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Visibility">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.visibility}}</span>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="forecast.cloudCover!==0 && forecast.cloudCover!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-512.png" alt="Cloud Cover"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Cloud Cover">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.cloudCover}}</span>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="forecast.ozone!==0 && forecast.ozone!==null">
+              <div class="row">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-512.png" alt="Ozone"
+                     class="mx-auto img-fluid m-img-icon" placement="top" ngbTooltip="Ozone">
+              </div>
+              <div class="row">
+                <span class="mx-auto">{{forecast.ozone}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-hourly" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="container">
+        <select class="custom-select form-control m-select" [(ngModel)]="hourlySelect" (ngModelChange)="setBarChart()">
+          <option value="Temperature" selected>Temperature</option>
+          <option value="Pressure">Pressure</option>
+          <option value="Humidity">Humidity</option>
+          <option value="Ozone">Ozone</option>
+          <option value="Visibility">Visibility</option>
+          <option value="Wind Speed">Wind Speed</option>
+        </select>
+      </div>
+      <div>
+        <div id="chart" style="display: block" *ngIf="barChartData.length>0">
+          <canvas baseChart
+                  [colors]="chartColors"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  chartType="bar">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-weekly" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <div class="container" id="chartContainer" style="margin:5em auto; height: 400px; width: 100%;"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" #modalBtn class="btn btn-primary" data-toggle="modal" data-target="#detailModal" hidden>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header m-modal-header">
+        <h5 class="modal-title" id="time">{{detailDate}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body m-modal-body">
+        <div class="row">
+          <div class="col">
+            <p class="m-detail-title">{{detail.city}}</p>
+            <span style="font-size: 40px;">{{detail.temperature | number:'1.0-0'}}</span>
+            <img class="round align-bottom m-img-degree"
+                 src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-512.png">
+            <span style="font-size: 40px;">F</span>
+            <p class="card-text m-card-text">
+              {{detail.summary}}</p>
+          </div>
+          <div class="col" [ngSwitch]="detail.icon">
+            <img *ngSwitchCase="'clear-day'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/sun-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'clear-night'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/sun-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'rain'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/rain-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'snow'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/snow-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'sleet'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/lightning-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'wind'"
+                 src="https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_10-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'fog'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/cloudy-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'cloudy'" src="https://cdn3.iconfinder.com/data/icons/weather-344/142/cloud-512.png"
+                 class="m-weather-icon">
+            <img *ngSwitchCase="'partly-cloudy-day'"
+                 src="https://cdn3.iconfinder.com/data/icons/weather-344/142/sunny-512.png"
+                 style="width:60px;height:60px;">
+            <img *ngSwitchCase="'partly-cloudy-night'"
+                 src="https://cdn3.iconfinder.com/data/icons/weather-344/142/sunny-512.png"
+                 class="m-weather-icon">
+          </div>
+        </div>
+        <div class="dropdown-divider" style="border-color:gray"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 col ml-auto">
+              Preciptation:{{detail.precipIntensity === null ? 'N/A' : detail.precipIntensity | number:'1.0-2'}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col ml-auto">
+              Chance of
+              Rain:{{detail.precipProbability === null ? 'N/A' : (detail.precipProbability * 100) | number:'1.0-2'}} %
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col ml-auto">
+              Wind Speed:{{detail.windSpeed === null ? 'N/A' : detail.windSpeed | number:'1.0-2'}} mph
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col ml-auto">
+              Humidity:{{detail.humidity === null ? 'N/A' : (detail.humidity * 100) | number:'1.0-2'}} %
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col ml-auto">
+              Visibility:{{detail.visibility === null ? 'N/A' : detail.visibility | number:'1.0-2'}} miles
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

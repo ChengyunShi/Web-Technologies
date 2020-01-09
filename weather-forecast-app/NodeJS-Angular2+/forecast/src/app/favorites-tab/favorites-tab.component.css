@@ -1,0 +1,64 @@
+@media (max-width: 376.98px) {
+  .m-icon-sm{
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
+  tr,td{
+    font-size: 11px;
+  }
+  .m-icon-sm i{
+    font-size: 15px;
+  }
+}
+
+@media (min-width:376px) and (max-width: 575.98px) {
+  .m-icon-sm{
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+  tr,td{
+    font-size: 13px;
+  }
+  .m-icon-sm i{
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .m-icon-sm{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .m-icon-sm{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .m-icon-sm{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .m-icon-sm{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+tr:nth-child(odd) {
+  background-color: #6592AD;
+}
+
+tr:nth-child(even) {
+  background-color: #9AD1F1;
+}
+

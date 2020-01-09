@@ -1,0 +1,32 @@
+<div class="container" style="margin:50px auto;">
+  <div class="alert alert-warning" role="alert" *ngIf="favorites.length<=0">
+    No records.
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center" *ngIf="favorites.length>0">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Wish List</th>
+      </tr>
+      <tr *ngFor="let favorite of favorites;let i = index">
+        <td scope="row" class="align-middle">{{i + 1}}</td>
+        <td scope="row" class="align-middle"><img src="{{favorite.image}}" class="rounded-circle m-icon-sm"></td>
+        <td scope="row" class="align-middle">
+          <a [routerLink]="['/current']"
+             [queryParams]="{city: favorite.city,state: favorite.state,longitude: favorite.longitude,latitude: favorite.latitude}"
+             placement="bottom" ngbTooltip="{{favorite.city}}">{{favorite.city}}</a>
+        </td>
+        <td scope="row" class="align-middle">{{favorite.state}}</td>
+        <td scope="row" class="align-middle">
+          <button class="btn btn-light m-icon-sm " style="color:#DAA521;" (click)="delete(i)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
