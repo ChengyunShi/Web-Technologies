@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+      }
+      .main-body{
+        text-align: center;
+        padding: 120px;
+      }
+      #tle{
+        margin: auto;
+      }
+      #txt{
+        margin: 20px auto;
+      }
+      #btn{
+        margin: auto;
+	    border-radius: 5px;
+	    border: 1px solid #b9b8b8;
+	    padding: 2px 10px;
+      }
+      img{
+        width: 100%;
+      }
+      table, th, td {
+        border: 1px solid black;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div class="main-body">
+    <h2 id="tle">Enter URL for largest manufactures by production (2017) List JSON File</h2>
+    <form onsubmit="parseJSON()">
+      <input type="text" id="txt" name="" value=""> <br>
+      <input type="button" id="btn" name="" value="Submit Query" onclick="parseJSON()">
+    </form>
+    </div>
+
+    <div id="content"></div>
+    <script type="text/javascript">
+    
+	function loadJSON(url){
+		var xmlhttp = new XMLHttpRequest(url);
+		try {
+		  xmlhttp.open("GET", url,false);
+		  xmlhttp.send(null);
+		  return xmlhttp.responseText;
+		} catch(e) {
+		  alert("The JSON file does not exist!");
+		  return "";
+		}
+	}
+
+	function parseJSON(){
+        var url = document.getElementById("txt").value;
+        var jsonDoc = loadJSON(url);
+        if(jsonDoc == "") return;
+        var jsonObj;
+        try{
+          jsonObj= JSON.parse(jsonDoc);
+        } catch(e) {
+          alert("Parse json error");
+          return;
+        }
+        var tableHeader = "";
+        var tableRow = "";
+        var jsonHeader = jsonObj.Mainline.Table.Header.Data;
+        var jsonRow = jsonObj.Mainline.Table.Row;
+
+        if(jsonRow == null || jsonHeader == null)
+        {
+          alert("This JSON file contains NO car manufacturers!");
+          return;
+        }
+
+        tableHeader += "<tr>";
+        for(i in jsonHeader){
+          tableHeader += "<th>"+jsonHeader[i]+"</th>";
+        }
+        tableHeader += "</tr>";
+
+        for(i in jsonRow){
+          	tableRow += "<tr>";
+			tableRow += "<td>" + jsonRow[i].Rank + "</td>"; 
+			tableRow += "<td>";
+			if(jsonRow[i].Group!=null) tableRow += jsonRow[i].Group;
+			tableRow += "</td>";
+			var array = jsonRow[i].Hubs.Hub;
+			tableRow += "<td>"+"<ul>";
+			var isFirst = true;
+			for(k in array){
+				if(array[k]=="" || array[k]==null) continue;
+				if(isFirst) {tableRow += "<li><b>" + array[k] + "</b></li>"; isFirst = false;}
+				else tableRow += "<li>" + array[k] + "</li>";
+			}	
+			tableRow += "</ul>"+"</td>"; 
+			tableRow += "<td>";
+			if(jsonRow[i].Vehicles!=null) tableRow += jsonRow[i].Vehicles;
+			tableRow + "</td>";
+			tableRow += "<td>";
+			if(jsonRow[i].HomePage!=null) tableRow += "<a href=\"" + jsonRow[i].HomePage + "\">" + jsonRow[i].HomePage;
+			tableRow += "</td>";
+			tableRow += "<td>";
+			if(jsonRow[i].Logo != null && jsonRow[i].Logo != "")
+				tableRow += "<img src=\"" + jsonRow[i].Logo + "\">";
+			tableRow += "</td>"; 
+    	}
+        
+        var tableContent = "<table>" + tableHeader + tableRow + "</table>";
+        var w = window.open('', '', 'width=1400,height=800,resizeable,scrollbars');
+        var windowHeader = "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><style>body{margin: 0;padding: 0; font-size: 18px; font-family: \"Times New Roman\", Times, serif;}img{width: 150px;}table, th, td {border: 1px solid black;}</style><title></title></head><body>";
+        var windowFooter = "</bo"+"dy>";
+        w.document.write(windowHeader+tableContent+windowFooter);
+        w.document.close();
+    }
+    </script>
+  </body>
+</html>

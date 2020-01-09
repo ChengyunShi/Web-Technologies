@@ -1,0 +1,332 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/*################################# header ###################################*/
+header{
+  width: 100%;
+  background: white;
+  position: fixed;
+  top: 0;
+  z-index:999;
+}
+.nav{
+  margin: auto;
+  width: 700px;
+}
+header{
+  content: '';
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  clear: both;
+}
+header h1{
+  margin: 24px auto 14px;
+  font-weight: 500;
+  float: left;
+  font-family: 'Noto Serif', serif;
+  font-style: italic;
+  font-size: 13px;
+  padding: 0px 0 0 92px;
+  color: #4a2a7b;
+  -webkit-transform: skew(-10deg);
+  -moz-transform:skew(-10deg);
+}
+nav{
+  float: right;
+  margin-top: 10px;
+}
+nav ul{
+  margin: 0;
+  padding: 0 70px 0 0;
+}
+nav ul li{
+  list-style: none;
+  float: left;
+  margin: 8px;
+}
+nav ul li a{
+  color: gray;
+  font-size: 10px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+/*################################ parallax ##################################*/
+.parallax {
+  width: 735px;
+  margin: auto;
+  scrollbar-width: none;
+  perspective: 2px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+  z-index: 3;
+}
+
+.parallax__layer--mid {
+  transform: translateZ(-1.3px) scale(1.7);
+  z-index: 2;
+}
+
+.parallax__layer--back {
+  transform: translateZ(-6px) scale(5);
+  z-index: 1;
+}
+
+.background-img1{
+  width: 735px;
+  height: 540px;
+  overflow: hidden;
+  margin: auto;
+}
+.background-img1 img{
+  max-width: 131%;
+  margin-left: -115px;
+  margin-top: 60px;
+}
+.background-img2{
+  width: 735px;
+  height: 520px;
+  overflow: hidden;
+  margin: 626px auto 0;
+}
+.background-img2 img{
+  max-width: 160%;
+  margin-left: -231px;
+  margin-top: -54px;
+}
+
+
+/*################################# home ####################################*/
+#home{
+  width: 360px;
+  height: 200px;
+  background-color: white;
+  margin: 213px auto 159px;
+}
+.home-content{
+  padding: 30px 30px;
+}
+.home-image{
+  width: 105px;
+  height: 140px;
+  overflow: hidden;
+  float: left;
+  margin-right: 20px;
+}
+.home-image img{
+  margin-top: -12px;
+  max-width: 100%;
+  height: auto;
+}
+.home-txt{
+  color: #4a2a7b;
+}
+#p1{
+  font-family: 'Noto Serif', serif;
+  font-style: italic;
+  margin: 0;
+  font-size: 12px;
+  -webkit-transform: skew(-6deg);
+  -moz-transform:skew(-6deg);
+}
+#p2{
+  font-family: 'Raleway', sans-serif;
+  font-size: 26px;
+  line-height: 0;
+  margin-top: 14px;
+}
+#p3{
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 0;
+}
+.home-txt hr{
+  border: 2px solid #4a2a7b;
+  width: 45px;
+  margin-left: 0;
+}
+.home-txt a{
+  font-family: 'Raleway', sans-serif;
+  color: #4a2a7b;
+  text-decoration: none;
+  line-height: 45px;
+  font-weight: 500;
+}
+
+/*############################### portfolio ##################################*/
+#portfolio{
+  margin: auto;
+  width: 735px;
+  height: 440px;
+  background: white;
+}
+.blue{
+  width: 33.3333%;
+  height: 100%;
+  background-color: #5398b9;
+  float: left;
+}
+.blue p{
+  margin: 192px 30px 5px;
+  color: white;
+  font-size: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+.blue a{
+  text-decoration: none;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+.purple{
+  width: 33.3333%;
+  height: 100%;
+  background-color: #4a2a7b;
+  float: left;
+}
+.purple p{
+  margin: 192px 30px 5px;
+  color: white;
+  font-size: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+.purple a{
+  text-decoration: none;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+.violet{
+  width: 33.3333%;
+  height: 100%;
+  background-color: #996cc0;
+  float: left;
+}
+.violet p{
+  margin: 192px 30px 5px;
+  color: white;
+  font-size: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+.violet a{
+  text-decoration: none;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+/*################################ about me ##################################*/
+#aboutme{
+  width: 100%;
+  height: 400px;
+  margin: 330px 0 0;
+  background-color: #4a2a7b;
+}
+.aboutme-content{
+  margin: auto;
+  width: 630px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  padding: 97px;
+}
+.aboutme h6{
+  margin-bottom: -20px;
+}
+.aboutme-content p{
+  font-size: 28px;
+}
+
+/*############################### contact me #################################*/
+#contactme{
+  width: 100%;
+  height: 350px;
+  background-color: white;
+}
+.contactme-content{
+  width: 600px;
+  margin: auto;
+  padding: 60px;
+}
+.contact-txt{
+  font-family: 'Raleway', sans-serif;
+  float: left;
+  width: 280px;
+  color: #4a2a7b;
+}
+.contact-txt h6{
+  margin-bottom: 0;
+}
+#p4{
+  font-size: 28px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+#p5{
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+}
+#p6{
+  font-size: 10px;
+  margin-top: 90px;
+}
+.contact-form{
+  width: 275px;
+  padding: 20px;
+  float: left;
+}
+#txtbox{
+  width: 100%;
+  height: 22px;
+  font-size: 10px;
+  margin: 3px;
+  padding: 0 10px;
+  color: #4a2a7b;
+  border: 1px solid #4a2a7b;
+  font-family: 'Raleway', sans-serif;
+}
+#message{
+  font-family: 'Raleway', sans-serif;
+  height: 75px;
+  width: 100%;
+  resize: none;
+  margin: 3px;
+  padding: 10px 10px;
+  color: #4a2a7b;
+  border: 1px solid #4a2a7b;
+  font-size: 10px;
+}
+#btn{
+  width: 70px;
+  height: 26px;
+  background-color: #4a2a7b;
+  border: none;
+  color: white;
+  margin-left: 230px;
+  font-family: 'Noto Serif', serif;
+  font-size: 11px;
+}

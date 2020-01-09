@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <title>hw3</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h1>Migi Bell</h1>
+        <nav>
+          <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#aboutme">ABOUT ME</a></li>
+            <li><a href="#contactme">CONTACT ME</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="parallax">
+      <div class="parallax__layer parallax__layer--back">
+        <div class="background-img1">
+          <img src="http://csci571.com/hw/hw3/images/coffee2.jpg" alt="">
+        </div>
+      </div>
+      <div class="parallax__layer parallax__layer--mid">
+        <div class="background-img2">
+          <img src="http://csci571.com/hw/hw3/images/coffee1.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="parallax__layer parallax__layer--base">
+
+        <div id="home">
+          <div class="home-content">
+            <div class="home-image">
+              <img src="http://csci571.com/hw/hw3/images/face.jpg" alt="">
+            </div>
+            <div class="home-txt">
+              <p id="p1">Migi Bell</p>
+              <p id="p2">FOOD</p>
+              <p id="p3">STYLIST.</p>
+              <hr>
+              <a href="#portfolio">PORTFOLIO &gt</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="portfolio">
+          <div class="blue">
+            <p>PROJECTS</p>
+            <a href="#">PROJECTS &gt</a>
+          </div>
+          <div class="purple">
+            <p>PROJECTS</p>
+            <a href="#">EDITORIAL &gt</a>
+          </div>
+          <div class="violet">
+            <p>PROJECTS</p>
+            <a href="#">INNOVATIVE &gt</a>
+          </div>
+        </div>
+
+        <div id="aboutme">
+          <div class="aboutme-content">
+            <h6>- Hello -</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+
+        <div id="contactme">
+          <div class="contactme-content">
+            <div class="contact-txt">
+              <h6>- Get In Touch -</h6>
+              <p id="p4">Contact Me</p>
+              <p id="p5">700 Morey Francois Street, San Francisco, CA 94148<br>info@lorem.com  |  Tel:123-555-1212</p>
+              <p id="p6">&copy; 2023 by Migi Bell.</p>
+            </div>
+            <form class="contact-form" action="index.html" method="post">
+              <input id="txtbox" type="text" name="name" value="Name">
+              <input id="txtbox" type="text" name="email" value="Email">
+              <input id="txtbox" type="text" name="phone" value="Phone">
+              <textarea id="message" name="message">Type your message here...</textarea>
+              <input id="btn" type="button" name="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
